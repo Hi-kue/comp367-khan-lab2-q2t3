@@ -17,28 +17,28 @@ pipeline {
 
         stage('Build Maven Project') {
             steps {
-                sh 'mvn clean package -DskipTests'
+                bat 'mvn clean package -DskipTests'
                 echo 'Maven Build Successful!'
             }
         }
 
         stage('Docker Login') {
             steps {
-                sh "echo $DOCKER_HUB_CREDENTIALS_PSW | docker login -u $DOCKER_HUB_CREDENTIALS_USR --password-stdin"
+                bat "echo %DOCKER_HUB_CREDENTIALS_PSW% | docker login -u %DOCKER_HUB_CREDENTIALS_USR% --password-stdin"
                 echo 'Docker Hub Login Successful!'
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                sh "docker build -t ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} ."
+                bat "docker build -t ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} ."
                 echo 'Docker Image Build Successful!'
             }
         }
 
         stage('Push Docker Image') {
             steps {
-                sh "docker push ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}"
+                bat "docker push ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}"
                 echo 'Docker Image Push Successful!'
             }
         }
@@ -46,8 +46,8 @@ pipeline {
 
     post {
         always {
-            sh 'docker logout'
-            echo 'Pipeline completed'
+            bat 'docker logout'
+            echo 'Pipeline Successfully Completed.'
         }
     }
 }
