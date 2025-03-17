@@ -6,6 +6,10 @@ pipeline {
         DOCKER_IMAGE_NAME = "hikue/comp367-lab2-q2t3"
         DOCKER_IMAGE_TAG = "latest"
     }
+    
+    tools {
+        maven 'Maven'
+    }
 
     stages {
         stage('Checkout') {
