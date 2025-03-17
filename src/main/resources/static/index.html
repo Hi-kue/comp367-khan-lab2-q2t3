@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lab#2 - Greetings</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+</head>
+<body>
+<main>
+    <h1 id="h1">
+        What is your name?
+    </h1>
+
+    <label for="name">Name</label>
+    <input type="text" id="name" placeholder="Please Enter a Valid Name..." pattern="[A-Za-z]{1,32}">
+
+    <button onclick="greetUser()">Click Me!</button>
+</main>
+<script>
+    function greetUser() {
+        const userName = document.getElementById("name").value;
+        const time = new Date().getTime();
+
+        const message = document.getElementById("h1");
+        message.innerHTML = `Hello ${userName}, Welcome to the Course COMP367`;
+    }
+</script>
+</body>
+</html>
